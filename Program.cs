@@ -1,3 +1,4 @@
+using App.Services;
 using SixLabors.ImageSharp.Web.Caching;
 using SixLabors.ImageSharp.Web.DependencyInjection;
 
@@ -13,6 +14,8 @@ builder.Services.AddImageSharp(
     {
         options.CacheFolder = "img/cache";
     });
+
+builder.Services.AddSingleton<IProcessadorImagem, ProcessadorImagemService>();
 
 var app = builder.Build();
 app.UseDeveloperExceptionPage();

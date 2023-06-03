@@ -4,7 +4,48 @@
     {
         public async Task<bool> AplicarEfeitoAsync(string caminhoArquivoImagem, EfeitoImagem efeito)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var fs = new FileStream(caminhoArquivoImagem, FileMode.Open, FileAccess.Read);
+                var img = await Image.LoadAsync(fs);
+                fs.Close();
+
+                switch (efeito)
+                {
+                    case EfeitoImagem.RotacionarDireita:
+                        RotacionarDireita(img);
+                        break;
+                    case EfeitoImagem.RotacionarEsquerda:
+                        RotacionarEsquerda(img);
+                        break;
+                    case EfeitoImagem.InverterHorizontal:
+                        InverterHorizontal(img);
+                        break;
+                    case EfeitoImagem.InverterVertical:
+                        InverterVertical(img);
+                        break;
+                    case EfeitoImagem.EscalaDeCinza:
+                        AplicarEscalaDeCinza(img);
+                        break;
+                    case EfeitoImagem.Sepia:
+                        AplicarSepia(img);
+                        break;
+                    case EfeitoImagem.Desfoque:
+                        AplicarDesfoque(img);
+                        break;
+                    case EfeitoImagem.Negativo:
+                        AplicarNegativo(img);
+                        break;
+                }
+
+                await img.SaveAsync(caminhoArquivoImagem);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         private void RotacionarDireita(Image img)
@@ -30,6 +71,10 @@
         private void AplicarEscalaDeCinza(Image img)
         {
             img.Mutate(x => x.Grayscale());
+        }
+        private void AplicarSepia(Image img)
+        {
+            img.Mutate(x => x.Sepia());
         }
 
         private void AplicarDesfoque(Image img)
