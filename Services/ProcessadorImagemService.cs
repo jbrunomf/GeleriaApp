@@ -7,9 +7,58 @@
             throw new NotImplementedException();
         }
 
-        public async Task<bool> ExcluirImagemAsynn(string caminhoArquivoImagem)
+        private void RotacionarDireita(Image img)
         {
-            throw new NotImplementedException();
+            img.Mutate(x => x.Rotate(90));
+        }
+
+        private void RotacionarEsquerda(Image img)
+        {
+            img.Mutate(x => x.Rotate(-90));
+        }
+
+        private void InverterHorizontal(Image img)
+        {
+            img.Mutate(x => x.Flip(FlipMode.Horizontal));
+        }
+
+        private void InverterVertical(Image img)
+        {
+            img.Mutate(x => x.Flip(FlipMode.Vertical));
+        }
+
+        private void AplicarEscalaDeCinza(Image img)
+        {
+            img.Mutate(x => x.Grayscale());
+        }
+
+        private void AplicarDesfoque(Image img)
+        {
+            img.Mutate(x => x.GaussianBlur());
+        }
+
+        private void AplicarNegativo(Image img)
+        {
+            img.Mutate(x => x.Invert());
+        }
+
+        public async Task<bool> ExcluirImagemAsync(string caminhoArquivoImagem)
+        {
+            try
+            {
+                if (File.Exists(caminhoArquivoImagem))
+                {
+                    File.Delete(caminhoArquivoImagem);
+                    return true;
+                }
+                else
+                {
+                    return await Task.FromResult(false);
+                }
+            }
+            catch (IOException ex) {
+                return await Task.FromResult(false);
+            }
         }
 
         public async Task<bool> SalvarUploadIagemAsync(string caminhoArquivoImagem, IFormFile imagem)
