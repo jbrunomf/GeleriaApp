@@ -8,6 +8,13 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.4" />
+    <PackageReference Include="microsoft.entityframeworkcore.design" Version="7.0.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="microsoft.entityframeworkcore.sqlite" Version="7.0.5" />
+    <PackageReference Include="sixlabors.imagesharp" Version="3.0.1" />
+    <PackageReference Include="sixlabors.imagesharp.web" Version="3.0.1" />
   </ItemGroup>
 
 </Project>
