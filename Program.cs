@@ -1,4 +1,6 @@
+using App.Data;
 using App.Services;
+using Microsoft.EntityFrameworkCore;
 using SixLabors.ImageSharp.Web.Caching;
 using SixLabors.ImageSharp.Web.DependencyInjection;
 
@@ -16,6 +18,7 @@ builder.Services.AddImageSharp(
     });
 
 builder.Services.AddSingleton<IProcessadorImagem, ProcessadorImagemService>();
+builder.Services.AddDbContext<DataContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 app.UseDeveloperExceptionPage();
