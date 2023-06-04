@@ -365,3 +365,5 @@ FodyWeavers.xsd
 /dados.db-wal
 /dados.db
 /dados.db
+/wwwroot/img/000004.webp
+*.webp

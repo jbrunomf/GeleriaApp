@@ -147,5 +147,49 @@ namespace App.Controllers
             db.SaveChanges();
             return RedirectToAction("Index", controllerName: "Galeria");
         }
+
+        [HttpGet]
+        public IActionResult AplicarEfeito(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var imagem = db.Imagens.Find(id);
+            if (imagem == null)
+            {
+                return NotFound();
+            }
+
+            return View("Efeitos", imagem);
+        }
+
+        [HttpPost]
+        public IActionResult AplicarEfeito(int id, string efeito)
+        {
+            string caminhoArquivoImagem = ObterCaminhoImagem("\\img\\", id, ".webp");
+            switch (efeito)
+            {
+                case "rr":
+                    pi.AplicarEfeitoAsync(caminhoArquivoImagem, EfeitoImagem.RotacionarDireita).Wait(); break;
+                case "rl":
+                    pi.AplicarEfeitoAsync(caminhoArquivoImagem, EfeitoImagem.RotacionarEsquerda).Wait(); break;
+                case "ih":
+                    pi.AplicarEfeitoAsync(caminhoArquivoImagem, EfeitoImagem.InverterHorizontal).Wait(); break;
+                case "iv":
+                    pi.AplicarEfeitoAsync(caminhoArquivoImagem, EfeitoImagem.InverterVertical).Wait(); break;
+                case "gs":
+                    pi.AplicarEfeitoAsync(caminhoArquivoImagem, EfeitoImagem.EscalaDeCinza).Wait(); break;
+                case "sp":
+                    pi.AplicarEfeitoAsync(caminhoArquivoImagem, EfeitoImagem.Sepia).Wait(); break;
+                case "ng":
+                    pi.AplicarEfeitoAsync(caminhoArquivoImagem, EfeitoImagem.Negativo).Wait(); break;
+                case "df":
+                    pi.AplicarEfeitoAsync(caminhoArquivoImagem, EfeitoImagem.Desfoque).Wait(); break;
+            }
+
+            return RedirectToAction("AplicarEfeito", new { id = id });
+        }
     }
 }
