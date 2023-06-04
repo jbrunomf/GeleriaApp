@@ -68,5 +68,36 @@ namespace App.Controllers
 
             return View(galeria);
         }
+
+        [HttpGet]
+        public IActionResult Excluir(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var galeria = db.Galerias.Find(id);
+            if (galeria == null)
+            {
+                return NotFound();
+            }
+            return View(galeria);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        [ActionName("Excluir")]
+        public IActionResult ExecutarExclusao (int? id)
+        {
+            var galeria = db.Galerias.Find(id);
+            if (galeria == null)
+            {
+                return NotFound();
+            }
+
+            db.Galerias.Remove(galeria);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
