@@ -1,18 +1,15 @@
 ﻿@model IEnumerable<App.Models.Galeria>
 
-@{
-    ViewBag.Titulo = "Galeria de Imagens";
-}
 
-<body>
+
     <a asp-action="Cadastrar" class="btn btn-primary">Nova Galeria</a>
     <hr />
     @if (Model.Count() > 0)
     {
-        <table class="table table-striped tabela-galerias">
+        <table class="table table-striped tabelas-galerias">
             <thead>
                 <tr>
-                    <th>@Html.DisplayNameFor(m => m.IdGaleria.ToString("D6"))</th>
+                    <th>@Html.DisplayNameFor(m => m.IdGaleria)</th>
                     <th>@Html.DisplayNameFor(m => m.Titulo)</th>
                     <th>Ações</th>
                 </tr>
@@ -24,13 +21,13 @@
                         <td>@item.IdGaleria</td>
                         <td>@item.Titulo</td>
                         <td>
-                            <a asp-action="Index" asp-controller="Imagem" asp-route-id="@item.IdGaleria" class="btn btn-success">
+                            <a asp-action="Index" asp-controller="Imagem" asp-route-id="@item.IdGaleria" class="btn btn-sm btn-success">
                                 <i class="bi bi-images" title="Imagens da Galeria"></i>
                             </a>
-                            <a asp-action="Alterar" asp-route-id="@item.IdGaleria" class="btn btn-secondary">
+                            <a asp-action="Alterar" asp-route-id="@item.IdGaleria" class="btn btn-sm btn-secondary">
                                 <i class="bi bi-pencil" title="Alterar Galeria"></i>
                             </a>
-                            <a asp-action="Excluir" asp-route-id="@item.IdGaleria" class="btn btn-danger">
+                            <a asp-action="Excluir" asp-route-id="@item.IdGaleria" class="btn btn-sm btn-danger">
                                 <i class="bi bi-trash" title="Excluir Galeria"></i>
                             </a>
                         </td>
@@ -45,4 +42,3 @@
             Nenhuma Galeria Cadastrada.
         </div>
     }
-</body>

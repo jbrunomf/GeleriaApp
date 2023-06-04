@@ -17,8 +17,4 @@
     <PackageReference Include="sixlabors.imagesharp.web" Version="3.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Galeria\" />
-  </ItemGroup>
-
 </Project>

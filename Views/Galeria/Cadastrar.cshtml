@@ -1,0 +1,19 @@
+﻿@model App.Models.Galeria
+
+@{
+    ViewBag.Titulo = "Cadastro de Galeria de Imagens";
+}
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="@Model.Titulo" class="form-label"></label>
+        <input class="form-control" asp-for="@Model.Titulo" />
+        <span class="text-danger" asp-validation-for="@Model.Titulo"></span>
+    </div>
+    <div>
+        <div class="mt-3">
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+             <button class="btn btn-primary" type="submit">Salvar</button>
+        </div>
+    </div>
+</form>

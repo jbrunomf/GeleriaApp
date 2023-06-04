@@ -12,6 +12,6 @@ namespace App.Models
         [Display(Name = "Título da Galeria")]
         public string Titulo { get; set; }
 
-        public ICollection<Imagem> Imagens { get; set; }
+        public ICollection<Imagem?>? Imagens { get; set; }
     }
 }
