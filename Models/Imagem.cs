@@ -15,7 +15,7 @@ namespace App.Models
         public int IdGaleria { get; set; }
 
         [ForeignKey("IdGaleria")]
-        public Galeria Galeria { get; set; }
+        public Galeria? Galeria { get; set; }
 
         [NotMapped, Required(ErrorMessage = "Imagem não enviada.")]
         [Display(Name = "Arquivo da Imagem")]
@@ -26,7 +26,7 @@ namespace App.Models
         {
             get
             {
-                var caminhoImagem = Path.Combine($"\\img\\", IdImagem.ToString("D6" + ".webp"));
+                var caminhoImagem = Path.Combine($"\\img\\", IdImagem.ToString("D6") + ".webp");
                 return caminhoImagem;
             }
         }

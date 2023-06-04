@@ -1,0 +1,56 @@
+﻿@model App.Models.Imagem
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>View</h1>
+
+<h4>Imagem</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Cadastrar" method="post" enctype="multipart/form-data">
+            @*<input type="hidden" asp-for="@Model.IdGaleria">*@
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Titulo" class="control-label"></label>
+                <input asp-for="Titulo" class="form-control"/>
+                <span asp-validation-for="Titulo" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="ArquivoImagem" class="control-label"></label>
+                <input asp-for="ArquivoImagem" class="form-control" accept="image/*">
+                <span asp-validation-for="ArquivoImagem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.IdGaleria" class="control-label"></label>
+                <select asp-for="@Model.IdGaleria" class="form-control" asp-items="@ViewBag.Galerias"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+    const inputImagem = document.querySelector(#ArquivoImagem);
+    inputImagem.addEventListener('change', (e) => {
+        var file = e.srcElement.files[0];
+        var img = document.querySelector('#imgAtual');
+        var reader = new FileReader();
+        reader.onloadend = function(){
+            img.src = reader.results;    
+        }
+        reader.readAsDataURL(file);
+    });
+    </script>
+}

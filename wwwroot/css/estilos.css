@@ -3,6 +3,12 @@
     color: white !important;
 }
 
+.tabela-imagens tr>th>first-child,
+.tabale-imagens tr>td:first-child,
+.tabale-imagens tr>th:nth-child(2),
+.tabale-imagens tr>td:first-child(2),
+.tabale-imagens tr>th:last-child,
+.tabale-imagens tr>td:last-child,
 .tabelas-galerias tr>th:first-child,
 .tabelas-galerias tr>td:first-child,
 .tabelas-galerias tr>th:last-child,
@@ -11,4 +17,8 @@
     width: 1%;
     white-space: nowrap;
     text-align: center;
+}
+
+.tabela-imagens tbody>tr>td {
+    vertical-align: middle;
 }
