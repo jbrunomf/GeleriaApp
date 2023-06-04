@@ -363,3 +363,5 @@ MigrationBackup/
 FodyWeavers.xsd
 /dados.db-shm
 /dados.db-wal
+/dados.db
+/dados.db

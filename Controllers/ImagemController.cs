@@ -116,5 +116,36 @@ namespace App.Controllers
 
             return View(imagem);
         }
+
+        [HttpGet]
+        public IActionResult Excluir(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var imagem = db.Imagens.Find(id);
+            if (imagem == null)
+            {
+                return NotFound();
+            }
+
+            return View(imagem);
+        }
+
+        [HttpPost]
+        public IActionResult Excluir(int id)
+        {
+            var imagem = db.Imagens.Find(id);
+            if (imagem == null)
+            {
+                return NotFound();
+            }
+
+            db.Imagens.Remove(imagem);
+            db.SaveChanges();
+            return RedirectToAction("Index", controllerName: "Galeria");
+        }
     }
 }
