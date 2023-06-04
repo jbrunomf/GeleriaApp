@@ -40,15 +40,15 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-
+    
     <script>
-    const inputImagem = document.querySelector(#ArquivoImagem);
+    const inputImagem = document.querySelector('#ArquivoImagem');
     inputImagem.addEventListener('change', (e) => {
         var file = e.srcElement.files[0];
         var img = document.querySelector('#imgAtual');
         var reader = new FileReader();
         reader.onloadend = function(){
-            img.src = reader.results;    
+            img.src = reader.result;    
         }
         reader.readAsDataURL(file);
     });
